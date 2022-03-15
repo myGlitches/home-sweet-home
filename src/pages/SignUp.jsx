@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 import { Link, useNavigate } from "react-router-dom"
 import {
   getAuth,
@@ -9,6 +11,7 @@ import { setDoc, doc, serverTimestamp } from "firebase/firestore"
 import { db } from "../firebase.config"
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg"
 import visibilityIcon from "../assets/svg/visibilityIcon.svg"
+import OAuth from "../components/OAuth"
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false)
@@ -30,7 +33,6 @@ function SignUp() {
 
   const onSubmit = async (e) => {
     e.preventDefault()
-
     try {
       const auth = getAuth()
 
@@ -54,7 +56,7 @@ function SignUp() {
 
       navigate("/")
     } catch (error) {
-      console.log(error)
+      toast.error("Something went wrong with Registration")
     }
   }
 
@@ -113,7 +115,7 @@ function SignUp() {
           </div>
         </form>
 
-        {/* Google OAuth */}
+        <OAuth />
 
         <Link to='/sign-in' className='registerLink'>
           Sign In Instead
