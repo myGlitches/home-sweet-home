@@ -4,7 +4,6 @@ import {
   limit,
   orderBy,
   query,
-  startAfter,
   where,
 } from "firebase/firestore"
 import { useEffect, useState } from "react"
